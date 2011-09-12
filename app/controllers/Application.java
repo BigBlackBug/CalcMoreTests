@@ -13,8 +13,9 @@ public class Application extends Controller {
     
     public static void index() {
         
-       // List<WordCountPair> countPairs=WordCountPair.all().fetch();
-        render();
+       List<WordCountPair> countPairs=WordCountPair.all().fetch();
+        render(countPairs);
+       // render();
     }
 
     

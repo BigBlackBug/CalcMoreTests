@@ -1,9 +1,12 @@
 package controllers;
 
+import com.google.gson.Gson;
+import java.util.List;
 import models.WordCountPair;
 import play.data.validation.Required;
 import play.mvc.Controller;
 import play.mvc.Http;
+import siena.Json;
 
 /**
  *
@@ -42,13 +45,18 @@ public class CalcMoreRestAPI extends  Controller{
         
     }
     
-    public static void clearDB(){
+    public static void clearWordsDB(){
         WordCountPair.all().delete();
         System.out.println("db is clear now!");
         renderText("deleted!");
     }
     
     public static void wordsCount(){
-        renderText(WordCountPair.all().count()+"");
+        renderJSON(WordCountPair.all().count());
     }
+    
+    public static void words(){
+        renderJSON(WordCountPair.all().fetch());
+    }
+    
 }

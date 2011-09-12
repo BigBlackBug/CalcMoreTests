@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'CalcMoreTests' /}
 
 <h1>Index Page</h1>
 
@@ -15,14 +15,15 @@
 
 <p>
     
-    <b></b> <br/>
+    
     #{if countPairs}
-<table>
-    #{list items:countPairs, as:'countPair'}
-    <tr>
-    <td>${countPair}</td>
-    </tr>
-    #{/ list}
-</table>
+        <b>Words:</b> <br/>
+        <table>
+            #{list items:countPairs, as:'countPair'}
+            <tr>
+                <td>${countPair}</td>
+            </tr>
+            #{/ list}
+        </table>
 
 #{/ if}

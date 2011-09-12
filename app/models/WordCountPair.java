@@ -32,7 +32,7 @@ public class WordCountPair extends Model {
 
     @Override
     public String toString() {
-        return word+" - "+count;
+        return word+" : "+count;
     }
 
     @Override
