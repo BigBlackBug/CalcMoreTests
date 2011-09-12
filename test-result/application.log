@@ -1,0 +1,19 @@
+11 сен 2011 19:03:02,673 INFO  ~ Starting /home/iliax/CalcMoreTest
+11 сен 2011 19:03:03,847 WARN  ~ You're running Play! in DEV mode
+11 сен 2011 19:03:04,140 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11 сен 2011 19:03:08,906 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+11 сен 2011 19:03:08,962 INFO  ~ Application 'CalcMoreTest' is now started !
+11 сен 2011 19:03:10,713 ERROR ~ 
+
+@67l6lc51h
+Internal Server Error (500) for request GET /
+
+Unexpected error
+Unexpected error : Method public static void beforeIndex() annotated with @Before in class controllers.Application is not static.
+
+play.exceptions.UnexpectedException: Method public static void beforeIndex() annotated with @Before in class controllers.Application is not static.
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:488)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:470)
+	at play.mvc.ActionInvoker.handleBefores(ActionInvoker.java:319)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:139)
+	at Invocation.HTTP Request(Play!)
