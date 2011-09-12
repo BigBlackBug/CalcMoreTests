@@ -10,10 +10,10 @@ GET     /saveword                               Application.saveWord
 
 #   Rest API
 PUT     /api/words                              CalcMoreRestAPI.saveWord
-POST     /api/words                              CalcMoreRestAPI.saveWord
-DELETE    /api/words                              CalcMoreRestAPI.clearDB
+GET     /api/words                              CalcMoreRestAPI.saveWord
+DELETE    /api/words                              CalcMoreRestAPI.clearWordsDB
 GET     /api/words/count                          CalcMoreRestAPI.wordsCount
-GET     /api/words                               CalcMoreRestAPI.words
+GET     /api/words/all                               CalcMoreRestAPI.words
 
 
 # Ignore favicon requests
