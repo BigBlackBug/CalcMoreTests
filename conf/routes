@@ -10,6 +10,7 @@ GET     /saveword                               Application.saveWord
 
 #   Rest API
 PUT     /api/words                              CalcMoreRestAPI.saveWord
+GET     /api/words                              CalcMoreRestAPI.saveWord
 DELETE    /api/words                              CalcMoreRestAPI.clearDB
 
 
