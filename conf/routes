@@ -6,6 +6,8 @@
 GET     /                                       Application.index
 
 GET     /saveWord                               Application.saveWord
+DELETE    /cleardb                                Application.clearDB
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

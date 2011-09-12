@@ -39,4 +39,10 @@ public class Application extends Controller {
         
         index();
     }
+    
+    public static void clearDB(){
+        WordCountPair.all().delete();
+        System.out.println("db is clear now!");
+    }
+    
 }
