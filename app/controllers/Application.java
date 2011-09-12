@@ -19,6 +19,12 @@ public class Application extends Controller {
 
     
     public static void saveWord(@Required String word, @Required String count){
+        
+        if(word.trim().isEmpty() || count.trim().isEmpty()){
+            index();
+            return;
+        }
+        
         try {
             Long longCount=Long.parseLong(count.trim());
             WordCountPair  existed;
@@ -30,7 +36,7 @@ public class Application extends Controller {
                 existed.count+=longCount;
                 existed.update();
                 System.out.println(" up!");
-            }
+            } 
             
         }
         catch(NumberFormatException  nfe){
@@ -40,9 +46,6 @@ public class Application extends Controller {
         index();
     }
     
-    public static void clearDB(){
-        WordCountPair.all().delete();
-        System.out.println("db is clear now!");
-    }
+
     
 }

@@ -5,8 +5,12 @@
 # Home page
 GET     /                                       Application.index
 
-GET     /saveWord                               Application.saveWord
-DELETE    /cleardb                                Application.clearDB
+GET     /saveword                               Application.saveWord
+
+
+#   Rest API
+PUT     /api/words                              CalcMoreRestAPI.saveWord
+DELETE    /api/words                              CalcMoreRestAPI.clearDB
 
 
 # Ignore favicon requests
