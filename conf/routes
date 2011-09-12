@@ -12,7 +12,7 @@ GET     /saveword                               Application.saveWord
 PUT     /api/words                              CalcMoreRestAPI.saveWord
 GET     /api/words                              CalcMoreRestAPI.saveWord
 DELETE    /api/words                              CalcMoreRestAPI.clearDB
-
+GET     /api/words/count                          CalcMoreRestAPI.wordsCount
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

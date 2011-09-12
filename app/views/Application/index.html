@@ -15,8 +15,8 @@
 
 <p>
     
-    <b> Words:</b> <br/>
-    
+    <b></b> <br/>
+    #{if countPairs}
 <table>
     #{list items:countPairs, as:'countPair'}
     <tr>
@@ -24,3 +24,5 @@
     </tr>
     #{/ list}
 </table>
+
+#{/ if}

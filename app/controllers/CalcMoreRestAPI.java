@@ -48,5 +48,7 @@ public class CalcMoreRestAPI extends  Controller{
         renderText("deleted!");
     }
     
-    
+    public static void wordsCount(){
+        renderText(WordCountPair.all().count()+"");
+    }
 }
