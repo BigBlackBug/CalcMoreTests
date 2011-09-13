@@ -15,6 +15,10 @@ DELETE    /api/words                              CalcMoreRestAPI.clearWordsDB
 GET     /api/words/count                          CalcMoreRestAPI.wordsCount
 GET     /api/words/all                               CalcMoreRestAPI.words
 
+GET    /api/errors                                     CalcMoreRestAPI.getErrors
+DELETE     /api/errors                                  CalcMoreRestAPI.deleteErrors
+
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

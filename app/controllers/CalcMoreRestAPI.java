@@ -1,12 +1,22 @@
 package controllers;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Query;
 import com.google.gson.Gson;
 import java.util.List;
+import models.DbError;
 import models.WordCountPair;
 import play.data.validation.Required;
+import play.modules.gae.GAE;
+import play.modules.siena.SienaPlugin;
 import play.mvc.Controller;
 import play.mvc.Http;
 import siena.Json;
+import siena.Model;
 
 /**
  *
@@ -24,25 +34,14 @@ public class CalcMoreRestAPI extends  Controller{
         
         try {
             Long longCount=Long.parseLong(count.trim());
-            WordCountPair  existed;
-            
-            if((existed = WordCountPair.all().filter("word", word).get()) ==null){
-                new WordCountPair(word.trim(), longCount).save();
-                System.out.println(" saved!");
-            } else {
-                existed.count+=longCount;
-                existed.update();
-                System.out.println(" up!");
-            } 
-            
-            response.status=Http.StatusCode.OK;
+            Application.saveOrUpdateWord(word.trim(), longCount);
         }
         catch(NumberFormatException  nfe){
             System.err.print("cant parse string to long");
             response.status=Http.StatusCode.BAD_REQUEST;
-            renderText("bad request!");
+            renderJSON("bad request!");
         }
-        
+               
     }
     
     public static void clearWordsDB(){
@@ -52,11 +51,25 @@ public class CalcMoreRestAPI extends  Controller{
     }
     
     public static void wordsCount(){
-        renderJSON(WordCountPair.all().count());
+        renderJSON(GAE.getDatastore().prepare(new Query("WordCountPair")).countEntities());
     }
     
     public static void words(){
-        renderJSON(WordCountPair.all().fetch());
+        renderJSON(Application.getWordCountPairs());
     }
+    
+    static public void getErrors(){
+        renderJSON(DbError.all(DbError.class).fetch());
+    }
+    
+    static public void deleteErrors(){
+        int delete = DbError.all(DbError.class).delete();
+        if(delete!=0)
+            renderJSON("deleted!");
+        else
+            renderJSON("there is no errors!");
+    }
+    
+   
     
 }

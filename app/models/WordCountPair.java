@@ -1,6 +1,8 @@
 package models;
 
 import java.math.BigDecimal;
+import java.util.LinkedList;
+import java.util.List;
 import siena.*;
 
 
@@ -10,8 +12,8 @@ import siena.*;
  */
 public class WordCountPair extends Model {
     
-    @Id
-    public Long id;
+//    @Id
+//    public Long id;
     
     public String word;
     
@@ -22,7 +24,9 @@ public class WordCountPair extends Model {
         this.count = count;
     }
 
-    public WordCountPair() {
+    public WordCountPair(com.google.appengine.api.datastore.Entity dsEntity) {
+        word=dsEntity.getKey().getName();
+        count=(Long) dsEntity.getProperty("count");
     }
     
     
@@ -56,5 +60,12 @@ public class WordCountPair extends Model {
         return hash;
     }
     
+    public static List<WordCountPair> fromEntities(List<com.google.appengine.api.datastore.Entity> entities){
+        List<WordCountPair> pairs=new LinkedList<WordCountPair>();
+        for(com.google.appengine.api.datastore.Entity e : entities){
+            pairs.add(new WordCountPair(e));
+        }
+        return pairs;
+    }
     
 }
