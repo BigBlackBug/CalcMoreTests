@@ -45,6 +45,7 @@ public class CalcMoreRestAPI extends  Controller{
     }
     
     public static void clearWordsDB(){
+        //Application.len=new Long(0);
         WordCountPair.all().delete();
         System.out.println("db is clear now!");
         renderText("deleted!");

@@ -12,8 +12,8 @@ import siena.*;
  */
 public class WordCountPair extends Model {
     
-//    @Id
-//    public Long id;
+    @Id
+    public Long id;
     
     public String word;
     
