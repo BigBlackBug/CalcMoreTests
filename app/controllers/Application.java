@@ -172,6 +172,7 @@ public class Application extends Controller {
             Entity newUser = new Entity(key);
             newUser.setProperty("status", "in_progress");
             newUser.setProperty("tweetID", -1);
+            newUser.setProperty("lastModified",new Date());
             renderText("ok");
         }
 
@@ -201,6 +202,7 @@ public class Application extends Controller {
         }
         
         user.setProperty("tweetID", tweetID);
+        user.setProperty("lastModified", new Date());
         if (!status.equals("in_progress")) {
             user.setProperty("status", status);
         }
