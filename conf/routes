@@ -19,6 +19,12 @@ GET    /api/errors                                     CalcMoreRestAPI.getErrors
 DELETE     /api/errors                                  CalcMoreRestAPI.deleteErrors
 
 
+#Test
+GET /first                      Application.firstRequest
+GET /testUser                   Application.testUser
+GET /updateStatus               Application.updateStatus
+
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

@@ -26,6 +26,10 @@ import play.modules.siena.SienaPlugin;
 
 public class Application extends Controller {
 
+    private static enum Statuses {
+
+        IN_PROGRESS, DONE, FREE
+    }
     static DatastoreService datastore = GAE.getDatastore();
 
     public static void index() {
@@ -53,40 +57,6 @@ public class Application extends Controller {
 
     //public static Long len=new Long(0);
     public static void saveOrUpdateWord(String word, Long count) {
-
-
-////        Версия Siena 
-//	 	
-//         WordCountPair  existed;
-//	 for(;;){	
-//             SienaPlugin.pm().beginTransaction();
-//            try{ 
-//               if((existed = WordCountPair.all().filter("word", word).get()) ==null){
-//
-//                    new WordCountPair(word.trim(), count).save();
-//
-//                   //System.out.println(" saved!");
-//
-//               } else {
-//
-//                   existed.count+=count;
-//
-//                   existed.update();
-//
-//                   //System.out.println(" up!");
-//
-//                } 
-//               
-//               SienaPlugin.pm().commitTransaction();
-//            }
-//            catch(ConcurrentModificationException exception){
-//                new DbError("concurrent err siena", new Date()).save();
-//                //SienaPlugin.pm().rollbackTransaction();
-//                continue;
-//            }
-//            break;
-//         }
-////        Версия Siena end	 	
 
 ////     
         Key entityKey = KeyFactory.createKey("WordCountPair", word);
@@ -200,6 +170,9 @@ public class Application extends Controller {
                 renderText("ok");
             }
         } catch (EntityNotFoundException ex) {
+            Entity newUser = new Entity(key);
+            newUser.setProperty("status", "in_progress");
+            newUser.setProperty("tweetID", -1);
             renderText("ok");
         }
 
@@ -216,15 +189,34 @@ public class Application extends Controller {
         }
     }
 
-    public static void updateStatus(String username, String status) {
-
+    public static void saveChunk(Map<String, Long> words, String username, String status, Long tweetID) {
+        for (String word : words.keySet()) {
+            saveOrUpdateWord(word, words.get(word));
+        }
         Key key = KeyFactory.createKey("USER", username);
+        Entity user = null;
         try {
-            Entity user = datastore.get(key);
-            user.setProperty("status", status);
-          
+            user = datastore.get(key);
         } catch (EntityNotFoundException ex) {
-            return;
+            java.util.logging.Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        user.setProperty("tweetID", tweetID);
+        if (!status.equals("in_progress")) {
+            user.setProperty("status", status);
         }
     }
+
+
+    /*private void updateStatus(Entity, String status) {
+
+    Key key = KeyFactory.createKey("USER", username);
+    try {
+    Entity user = datastore.get(key);
+    user.setProperty("status", status);
+
+    } catch (EntityNotFoundException ex) {
+    return;
+    }
+    }*/
 }
