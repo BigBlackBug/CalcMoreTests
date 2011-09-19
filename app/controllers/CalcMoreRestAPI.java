@@ -24,7 +24,7 @@ import siena.Model;
  */
 public class CalcMoreRestAPI extends  Controller{
     
-    public static void saveWord(@Required String word, @Required String count){
+    /*public static void saveWord(@Required String word, @Required String count){
         
         if(word==null || count==null || word.trim().isEmpty() || count.trim().isEmpty()){
             response.status=Http.StatusCode.BAD_REQUEST;
@@ -42,7 +42,7 @@ public class CalcMoreRestAPI extends  Controller{
             renderJSON("bad request!");
         }
                
-    }
+    }*/
     
     public static void clearWordsDB(){
         //Application.len=new Long(0);
