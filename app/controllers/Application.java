@@ -38,7 +38,7 @@ public class Application extends Controller {
         //render();
     }
 
-    public static void saveWord(@Required String word, @Required String count) {
+    /*public static void saveWord(@Required String word, @Required String count) {
 
         if (word.trim().isEmpty() || count.trim().isEmpty()) {
             index();
@@ -53,10 +53,10 @@ public class Application extends Controller {
         }
 
         index();
-    }
+    }*/
 
     //public static Long len=new Long(0);
-    public static void saveOrUpdateWord(String word, Long count) {
+    private static void saveOrUpdateWord(String word, Long count) {
 
 ////     
         Key entityKey = KeyFactory.createKey("WordCountPair", word);
@@ -158,8 +158,7 @@ public class Application extends Controller {
     }
 
     public static void testUser(String username) {
-        //пришёл запрос новый
-
+        
         Key key = KeyFactory.createKey("USER", username);
         try {
             Entity user = datastore.get(key);
@@ -207,16 +206,4 @@ public class Application extends Controller {
         }
     }
 
-
-    /*private void updateStatus(Entity, String status) {
-
-    Key key = KeyFactory.createKey("USER", username);
-    try {
-    Entity user = datastore.get(key);
-    user.setProperty("status", status);
-
-    } catch (EntityNotFoundException ex) {
-    return;
-    }
-    }*/
 }
