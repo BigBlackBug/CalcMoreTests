@@ -5,16 +5,11 @@
 # Home page
 GET     /                                       Application.index
 
-GET     /saveword                               Application.saveWord
-
-
-#   Rest API
-
-
 #Test
 GET /first                      Application.firstRequest
 GET /testUser                   Application.testUser
 GET /updateStatus               Application.updateStatus
+GET /save                       Application.saveChunk
 
 
 
